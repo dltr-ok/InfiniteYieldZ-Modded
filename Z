@@ -4746,6 +4746,7 @@ CMDs[#CMDs + 1] = {NAME = 'unctrllock', DESC = 'Re-binds Shiftlock to LeftShift'
 CMDs[#CMDs + 1] = {NAME = 'listento [player]', DESC = 'Listens to the area around a player. Can also eavesdrop with vc'}
 CMDs[#CMDs + 1] = {NAME = 'unlistento', DESC = 'Disables listento'}
 CMDs[#CMDs + 1] = {NAME = 'jerk', DESC = 'Makes you jork it'}
+CMDs[#CMDs + 1] = {NAME = 'nofalldmg', DESC = 'Removes fall damage in NDS games'}
 CMDs[#CMDs + 1] = {NAME = 'animgui', DESC = 'Opens a gui with animations'}
 CMDs[#CMDs + 1] = {NAME = 'unsuspendvc', DESC = 'Unsuspends you from voice chat'}
 wait()
@@ -12519,6 +12520,38 @@ addcmd("unlistento", {}, function(args, speaker)
 end)
 addcmd("animgui", {}, function(args, speaker)
     loadstring(game:HttpGet("https://raw.githubusercontent.com/TempUserIdk18/robloxscripts/refs/heads/main/Animations.lua"))()
+end)
+addcmd("nofalldmg, {}, function(args, speaker)
+    -- No Fall Damage by Pio (Discord: piomanly or ID: 311397526399877122) --
+local runsvc = game:GetService("RunService")
+local heartbeat = runsvc.Heartbeat
+local rstepped = runsvc.RenderStepped
+
+local lp = game.Players.LocalPlayer
+
+local novel = Vector3.zero
+
+local function nofalldamage(chr)
+    local root = chr:WaitForChild("HumanoidRootPart")
+    
+    if root then
+        local con
+        con = heartbeat:Connect(function()
+            if not root.Parent then
+                con:Disconnect()
+            end
+            
+            local oldvel = root.AssemblyLinearVelocity
+            root.AssemblyLinearVelocity = novel
+            
+            rstepped:Wait()
+            root.AssemblyLinearVelocity = oldvel
+        end)
+    end
+end
+
+nofalldamage(lp.Character)
+    lp.CharacterAdded:Connect(nofalldamage)
 end)
 addcmd("jerk", {}, function(args, speaker)
     local humanoid = speaker.Character:FindFirstChildWhichIsA("Humanoid")
