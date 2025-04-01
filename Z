@@ -12521,8 +12521,7 @@ end)
 addcmd("animgui", {}, function(args, speaker)
     loadstring(game:HttpGet("https://raw.githubusercontent.com/TempUserIdk18/robloxscripts/refs/heads/main/Animations.lua"))()
 end)
-addcmd("nofalldmg, {}, function(args, speaker)
-    -- No Fall Damage by Pio (Discord: piomanly or ID: 311397526399877122) --
+addcmd("nofalldmg", {}, function(args, speaker)
 local runsvc = game:GetService("RunService")
 local heartbeat = runsvc.Heartbeat
 local rstepped = runsvc.RenderStepped
@@ -12551,7 +12550,7 @@ local function nofalldamage(chr)
 end
 
 nofalldamage(lp.Character)
-    lp.CharacterAdded:Connect(nofalldamage)
+lp.CharacterAdded:Connect(nofalldamage)
 end)
 addcmd("jerk", {}, function(args, speaker)
     local humanoid = speaker.Character:FindFirstChildWhichIsA("Humanoid")
