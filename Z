@@ -17,7 +17,7 @@ if not game:IsLoaded() then
     notLoaded:Destroy()
 end
 
-currentVersion = "0.0.1"
+currentVersion = "0.0.2"
 
 ScaledHolder = Instance.new("Frame")
 Scale = Instance.new("UIScale")
@@ -4748,6 +4748,7 @@ CMDs[#CMDs + 1] = {NAME = 'unlistento', DESC = 'Disables listento'}
 CMDs[#CMDs + 1] = {NAME = 'jerk', DESC = 'Makes you jork it'}
 CMDs[#CMDs + 1] = {NAME = 'nofalldmg', DESC = 'Removes fall damage in NDS games'}
 CMDs[#CMDs + 1] = {NAME = 'animgui', DESC = 'Opens a gui with animations'}
+CMDs[#CMDs + 1] = {NAME = 'yeet', DESC = 'Opens the new yeet gui trollface edition'}
 CMDs[#CMDs + 1] = {NAME = 'unsuspendvc', DESC = 'Unsuspends you from voice chat'}
 wait()
 
@@ -12520,6 +12521,9 @@ addcmd("unlistento", {}, function(args, speaker)
 end)
 addcmd("animgui", {}, function(args, speaker)
     loadstring(game:HttpGet("https://raw.githubusercontent.com/TempUserIdk18/robloxscripts/refs/heads/main/Animations.lua"))()
+end)
+addcmd("yeet", {}, function(args, speaker)
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/TempUserIdk18/robloxscripts/refs/heads/main/yeet.lua"))()
 end)
 addcmd("nofalldmg", {}, function(args, speaker)
 local runsvc = game:GetService("RunService")
