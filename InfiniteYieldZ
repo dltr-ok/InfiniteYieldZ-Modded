@@ -1,3 +1,4 @@
+
 if IY_LOADED and not _G.IY_DEBUG == true then
     error("Infinite Yield is already running!", 0)
     return
@@ -4733,6 +4734,12 @@ CMDs[#CMDs + 1] = {NAME = 'trip', DESC = 'Makes your character fall over'}
 CMDs[#CMDs + 1] = {NAME = 'norender', DESC = 'Disable 3d Rendering to decrease the amount of CPU the client uses'}
 CMDs[#CMDs + 1] = {NAME = 'render', DESC = 'Enable 3d Rendering'}
 CMDs[#CMDs + 1] = {NAME = 'use2022materials / 2022materials', DESC = 'Enables 2022 material textures'}
+CMDs[#CMDs + 1] = {NAME = 'r15tor6animations / r15tor6anims', DESC = 'Makes you r6 using r6 animations'}
+CMDs[#CMDs + 1] = {NAME = 'AwesomeDex / ADex', DESC = 'Awesome explorer, the modded version of dex. Has way less detections than the normal one.'}
+CMDs[#CMDs + 1] = {NAME = 'OctoSpy / OSpy', DESC = 'OctoSpy, a new remote spy that also works for low level executors.'}
+CMDs[#CMDs + 1] = {NAME = 'scripthub / sh', DESC = 'Script Hub that uses script providers like ScriptBlox'}
+CMDs[#CMDs + 1] = {NAME = 'somedupetools / sdupetool', DESC = 'dupe tool ig'}
+CMDs[#CMDs + 1] = {NAME = '2016Anims / 2016Anim', DESC = '2016 Animations'}
 CMDs[#CMDs + 1] = {NAME = 'unuse2022materials / un2022materials', DESC = 'Disables 2022 material textures'}
 CMDs[#CMDs + 1] = {NAME = 'promptr6', DESC = 'Prompts the game to switch your rig type to R6'}
 CMDs[#CMDs + 1] = {NAME = 'promptr15', DESC = 'Prompts the game to switch your rig type to R15'}
@@ -8872,6 +8879,62 @@ addcmd('2022materials',{'use2022materials'},function(args, speaker)
 	end
 end)
 
+addcmd('r15tor6animations ',{'r15tor6anims'},function(args, speaker)
+     loadstring(game:HttpGet("https://raw.githubusercontent.com/Imagnir/r6_anims_for_r15/main/r6_anims.lua",true))()
+end)
+
+addcmd('AwesomeDex',{'ADex'},function(args, speaker)
+     loadstring(game:HttpGet("https://raw.githubusercontent.com/dltr-ok/InfiniteYieldZ-Modded/refs/heads/main/ADex",true))()
+end)
+
+addcmd('OctoSpy',{'OSpy'},function(args, speaker)
+     loadstring(game:HttpGet("https://raw.githubusercontent.com/InfernusScripts/Octo-Spy/refs/heads/main/Main.lua", true))()
+end)
+
+addcmd('2016Anims',{'2016Anim'},function(args, speaker)
+     loadstring(game:HttpGet("https://raw.githubusercontent.com/ltseverydayyou/Nameless-Admin/refs/heads/main/2016%20anims",true))()
+end)
+
+addcmd('scripthub',{'sh'},function(args, speaker)
+     loadstring(game:HttpGet("https://raw.githubusercontent.com/ltseverydayyou/Nameless-Admin/refs/heads/main/ScriptHubNA.lua",true))()
+end)
+
+addcmd('somedupetools',{'sdupetool'},function(args, speaker)
+for i=1,4 do
+local block = Instance.new("Part")
+local bp = Instance.new("BodyPosition")
+block.CFrame = CFrame.new(9e9, 9e9, 9e9)
+block.Anchored = true
+local player = game.Players.LocalPlayer
+local character = player.Character
+local savepos = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+for i, v in pairs(player.Backpack:GetChildren()) do
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = block.CFrame
+    v.Parent = Character
+    bp.Parent = v.Handle
+    bp.Position = block.Position
+    v.Handle.Velocity = Vector3.new(25.70, 0, 0)
+    v.Handle.RotVelocity = Vector3.new(9e9, 9e9, 9e9)
+    v.Parent = game.Players.LocalPlayer.Backpack
+    wait(1)
+    v.Parent = character
+    task.wait(0)
+    v.Parent = workspace
+end
+character:ClearAllChildren()
+wait(7)
+for i, v in pairs(game.workspace:GetDescendants()) do
+    if v:IsA("Tool") then
+        v.Handle.CanCollide = false
+        bp:Destroy()
+        v.Handle.RotVelocity = Vector3.new(0, 0, 0)
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = savepos
+        v.Handle.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+        block:Destroy()
+    end
+end
+end)
+
 addcmd('un2022materials',{'unuse2022materials'},function(args, speaker)
 	if sethidden then
 		sethidden(MaterialService, "Use2022Materials", false)
@@ -12883,6 +12946,7 @@ end)
 addcmd('removecmd',{'deletecmd'},function(args, speaker)
 	removecmd(args[1])
 end)
+
 
 if IsOnMobile then
 	local QuickCapture = Instance.new("TextButton")
